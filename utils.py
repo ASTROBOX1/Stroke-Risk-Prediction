@@ -7,7 +7,7 @@ import logging
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union, Tuple
 import yaml
 import json
 import streamlit as st
@@ -21,7 +21,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 # LOGGING CONFIGURATION
 # ═══════════════════════════════════════════════════════════
 
-def resolve_path(path: str | os.PathLike[str]) -> Path:
+def resolve_path(path: Union[str, os.PathLike[str]]) -> Path:
     """Resolve project paths relative to the repository root."""
     candidate = Path(path)
     if candidate.is_absolute():
@@ -269,7 +269,7 @@ def load_dashboard_state(
 
 def bootstrap_standalone_page(
     page_title_suffix: str
-) -> tuple[Dict[str, Any], logging.Logger, Dict[str, Any]]:
+) -> Tuple[Dict[str, Any], logging.Logger, Dict[str, Any]]:
     """Prepare a page module so it can run directly as a Streamlit page."""
     config = load_config("config.yaml")
     logger = setup_logging(config)
@@ -296,7 +296,7 @@ def validate_input(
     data: Dict[str, Any],
     config: Dict[str, Any],
     logger: Optional[logging.Logger] = None
-) -> tuple[bool, str]:
+) -> Tuple[bool, str]:
     """Validate user input for stroke prediction.
 
     Args:
@@ -501,23 +501,3 @@ CSS_STYLES = """
     }
 </style>
 """
-
-
-# ═══════════════════════════════════════════════════════════
-# UI HELPER FUNCTIONS
-# ═══════════════════════════════════════════════════════════
-
-def kpi_card(icon: str, value: str, label: str, css_class: str = "") -> None:
-    """Display a KPI card with icon and value."""
-    st.markdown(f"""
-    <div class="kpi-card {css_class}">
-        <div class="kpi-icon">{icon}</div>
-        <div class="kpi-value">{value}</div>
-        <div class="kpi-label">{label}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-
-def section_divider() -> None:
-    """Display a decorative section divider."""
-    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
