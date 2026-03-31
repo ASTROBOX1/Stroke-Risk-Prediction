@@ -187,7 +187,7 @@ stroke-prediction/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/stroke-prediction.git
+git clone https://github.com/ASTROBOX1/stroke-prediction.git
 cd stroke-prediction
 ```
 
