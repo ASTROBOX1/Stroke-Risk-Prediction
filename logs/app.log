@@ -236,3 +236,43 @@ def load_data(_logger, ...):
 2026-03-19 07:21:08,961 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
 2026-03-19 07:21:08,982 - utils - INFO - Report Summary page displayed successfully
 2026-03-19 07:21:08,983 - utils - INFO - User navigated to: 📋 Report Summary
+2026-03-31 23:47:39,637 - utils - INFO - Streamlit app started
+2026-03-31 23:47:39,652 - utils - INFO - Loaded 5110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-03-31 23:47:39,657 - utils - INFO - Dropped 'id' column
+2026-03-31 23:47:39,659 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-31 23:47:39,661 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-31 23:47:39,661 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-31 23:47:39,667 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-03-31 23:47:39,673 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-03-31 23:47:39,675 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-03-31 23:48:21,952 - utils - INFO - Streamlit app started
+2026-03-31 23:48:21,958 - utils - INFO - Dropped 'id' column
+2026-03-31 23:48:21,962 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-31 23:48:21,964 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-31 23:48:21,964 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-31 23:49:44,779 - utils - INFO - Streamlit app started
+2026-03-31 23:49:44,785 - utils - INFO - Dropped 'id' column
+2026-03-31 23:49:44,789 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-31 23:49:44,791 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-31 23:49:44,792 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-31 23:50:17,137 - utils - INFO - Streamlit app started
+2026-03-31 23:50:17,277 - utils - INFO - Loaded 5110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-03-31 23:50:17,283 - utils - INFO - Dropped 'id' column
+2026-03-31 23:50:17,286 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-31 23:50:17,290 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-31 23:50:17,290 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-31 23:50:18,342 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-03-31 23:50:18,347 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-03-31 23:50:18,350 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-03-31 23:50:48,936 - utils - INFO - Streamlit app started
+2026-03-31 23:50:48,942 - utils - INFO - Dropped 'id' column
+2026-03-31 23:50:48,945 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-31 23:50:48,948 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-31 23:50:48,948 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-31 23:52:11,943 - utils - INFO - Streamlit app started
+2026-03-31 23:52:11,952 - utils - INFO - Dropped 'id' column
+2026-03-31 23:52:11,956 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-31 23:52:11,958 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-31 23:52:11,959 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-31 23:52:12,282 - utils - INFO - Executive Overview page displayed successfully
+2026-03-31 23:52:12,282 - utils - INFO - User navigated to: 🏠 Executive Overview
