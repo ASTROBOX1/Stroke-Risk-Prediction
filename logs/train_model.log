@@ -1,0 +1,48 @@
+2026-03-19 06:53:19,284 - __main__ - INFO - ======================================================================
+2026-03-19 06:53:19,284 - __main__ - INFO - Starting ML Training Pipeline
+2026-03-19 06:53:19,284 - __main__ - INFO - ======================================================================
+2026-03-19 06:53:19,284 - __main__ - INFO - Loading data from data/healthcare-dataset-stroke-data.csv...
+2026-03-19 06:53:19,297 - __main__ - INFO - ✅ Loaded 5,110 rows × 12 columns
+2026-03-19 06:53:19,297 - __main__ - INFO - Preprocessing data...
+2026-03-19 06:53:19,300 - __main__ - INFO - Removed 1 rows with gender='Other'
+2026-03-19 06:53:19,301 - __main__ - INFO - Dropped 'id' column
+2026-03-19 06:53:19,302 - __main__ - INFO - ✅ Preprocessing complete. Shape: (5109, 10)
+2026-03-19 06:53:19,307 - __main__ - INFO - Train: 4,087 samples | Test: 1,022 samples
+2026-03-19 06:53:19,307 - __main__ - INFO - Stroke cases in train: 199 / 4087 (4.9%)
+2026-03-19 06:53:19,307 - __main__ - INFO - Building model pipelines...
+2026-03-19 06:53:19,307 - __main__ - INFO - ✅ Built 3 model pipelines
+2026-03-19 06:53:19,308 - __main__ - INFO - Training Random Forest...
+2026-03-19 06:53:21,327 - __main__ - INFO - ✅ Random Forest trained successfully
+2026-03-19 06:53:21,327 - __main__ - INFO - Training XGBoost...
+2026-03-19 06:53:22,789 - __main__ - INFO - ✅ XGBoost trained successfully
+2026-03-19 06:53:22,790 - __main__ - INFO - Training Logistic Regression...
+2026-03-19 06:53:22,902 - __main__ - INFO - ✅ Logistic Regression trained successfully
+2026-03-19 06:53:22,902 - __main__ - INFO - Evaluating models...
+2026-03-19 06:53:23,044 - __main__ - INFO -   ── Random Forest ──
+2026-03-19 06:53:23,044 - __main__ - INFO -      Accuracy : 0.8659
+2026-03-19 06:53:23,044 - __main__ - INFO -      Precision: 0.1405
+2026-03-19 06:53:23,044 - __main__ - INFO -      Recall   : 0.3400
+2026-03-19 06:53:23,044 - __main__ - INFO -      F1-Score : 0.1988
+2026-03-19 06:53:23,044 - __main__ - INFO -      AUC-ROC  : 0.7726
+2026-03-19 06:53:23,149 - __main__ - INFO -   ── XGBoost ──
+2026-03-19 06:53:23,150 - __main__ - INFO -      Accuracy : 0.9266
+2026-03-19 06:53:23,150 - __main__ - INFO -      Precision: 0.2093
+2026-03-19 06:53:23,150 - __main__ - INFO -      Recall   : 0.1800
+2026-03-19 06:53:23,150 - __main__ - INFO -      F1-Score : 0.1935
+2026-03-19 06:53:23,150 - __main__ - INFO -      AUC-ROC  : 0.7768
+2026-03-19 06:53:23,206 - __main__ - INFO -   ── Logistic Regression ──
+2026-03-19 06:53:23,206 - __main__ - INFO -      Accuracy : 0.7397
+2026-03-19 06:53:23,206 - __main__ - INFO -      Precision: 0.1351
+2026-03-19 06:53:23,206 - __main__ - INFO -      Recall   : 0.8000
+2026-03-19 06:53:23,206 - __main__ - INFO -      F1-Score : 0.2312
+2026-03-19 06:53:23,206 - __main__ - INFO -      AUC-ROC  : 0.8414
+2026-03-19 06:53:23,206 - __main__ - INFO - 🏆 Best model: Logistic Regression (AUC = 0.8414)
+2026-03-19 06:53:23,230 - __main__ - INFO - Extracting feature importance...
+2026-03-19 06:53:23,230 - __main__ - INFO - ✅ Extracted importances for 20 features
+2026-03-19 06:53:23,230 - __main__ - INFO - Creating model directory: models
+2026-03-19 06:53:23,237 - __main__ - INFO - ✅ Model saved → models/best_stroke_model.joblib
+2026-03-19 06:53:23,252 - __main__ - INFO - ✅ Metrics saved → models/metrics.json
+2026-03-19 06:53:23,253 - __main__ - INFO - ✅ Feature importance saved → models/feature_importance.json
+2026-03-19 06:53:23,253 - __main__ - INFO - ======================================================================
+2026-03-19 06:53:23,253 - __main__ - INFO - ✅ Pipeline complete successfully!
+2026-03-19 06:53:23,253 - __main__ - INFO - ======================================================================

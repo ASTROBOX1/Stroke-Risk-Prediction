@@ -1,0 +1,238 @@
+2026-03-19 06:51:13,489 - utils - INFO - Streamlit app started
+2026-03-19 06:51:13,733 - utils - ERROR - Error during app initialization: Cannot hash argument 'logger' (of type `logging.Logger`) in 'load_data'.
+
+To address this, you can tell Streamlit not to hash this argument by adding a
+leading underscore to the argument's name in the function signature:
+
+```
+@st.cache_data
+def load_data(_logger, ...):
+    ...
+```
+            
+2026-03-19 06:51:25,933 - utils - INFO - Streamlit app started
+2026-03-19 06:51:25,938 - utils - ERROR - Error during app initialization: Cannot hash argument 'logger' (of type `logging.Logger`) in 'load_data'.
+
+To address this, you can tell Streamlit not to hash this argument by adding a
+leading underscore to the argument's name in the function signature:
+
+```
+@st.cache_data
+def load_data(_logger, ...):
+    ...
+```
+            
+2026-03-19 06:52:25,570 - utils - INFO - Streamlit app started
+2026-03-19 06:52:25,823 - utils - ERROR - Error during app initialization: Cannot hash argument 'logger' (of type `logging.Logger`) in 'load_data'.
+
+To address this, you can tell Streamlit not to hash this argument by adding a
+leading underscore to the argument's name in the function signature:
+
+```
+@st.cache_data
+def load_data(_logger, ...):
+    ...
+```
+            
+2026-03-19 06:52:31,937 - utils - INFO - Streamlit app started
+2026-03-19 06:52:31,943 - utils - ERROR - Error during app initialization: Cannot hash argument 'logger' (of type `logging.Logger`) in 'load_data'.
+
+To address this, you can tell Streamlit not to hash this argument by adding a
+leading underscore to the argument's name in the function signature:
+
+```
+@st.cache_data
+def load_data(_logger, ...):
+    ...
+```
+            
+2026-03-19 06:53:34,579 - utils - INFO - Streamlit app started
+2026-03-19 06:53:34,820 - utils - ERROR - Error during app initialization: Cannot hash argument 'logger' (of type `logging.Logger`) in 'load_data'.
+
+To address this, you can tell Streamlit not to hash this argument by adding a
+leading underscore to the argument's name in the function signature:
+
+```
+@st.cache_data
+def load_data(_logger, ...):
+    ...
+```
+            
+2026-03-19 06:56:35,803 - utils - INFO - Streamlit app started
+2026-03-19 06:56:35,833 - utils - INFO - Loaded 5110 rows × 12 columns from data/healthcare-dataset-stroke-data.csv
+2026-03-19 06:56:35,842 - utils - INFO - Dropped 'id' column
+2026-03-19 06:56:35,846 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 06:56:35,848 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 06:56:35,848 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 06:56:37,704 - utils - INFO - Loaded model from models/best_stroke_model.joblib
+2026-03-19 06:56:37,709 - utils - INFO - Loaded JSON from models/metrics.json
+2026-03-19 06:56:37,710 - utils - INFO - Loaded JSON from models/feature_importance.json
+2026-03-19 06:56:38,243 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 06:56:38,243 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 06:57:01,856 - utils - INFO - Streamlit app started
+2026-03-19 06:57:02,079 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 06:57:02,080 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 06:57:05,020 - utils - INFO - Streamlit app started
+2026-03-19 06:57:05,116 - utils - INFO - Data Explorer: Filtered to 5109 records
+2026-03-19 06:57:05,117 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 06:57:08,901 - utils - INFO - Streamlit app started
+2026-03-19 06:57:08,973 - utils - INFO - Data Explorer: Filtered to 4452 records
+2026-03-19 06:57:08,974 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 06:57:21,070 - utils - INFO - Streamlit app started
+2026-03-19 06:57:21,685 - utils - INFO - EDA page displayed successfully
+2026-03-19 06:57:21,686 - utils - INFO - User navigated to: 📊 Exploratory Analysis
+2026-03-19 07:00:39,028 - utils - INFO - Streamlit app started
+2026-03-19 07:00:39,211 - utils - INFO - Loaded 5110 rows × 12 columns from data/healthcare-dataset-stroke-data.csv
+2026-03-19 07:00:39,216 - utils - INFO - Dropped 'id' column
+2026-03-19 07:00:39,218 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:00:39,220 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:00:39,221 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:00:40,941 - utils - INFO - Loaded model from models/best_stroke_model.joblib
+2026-03-19 07:00:40,945 - utils - INFO - Loaded JSON from models/metrics.json
+2026-03-19 07:00:40,947 - utils - INFO - Loaded JSON from models/feature_importance.json
+2026-03-19 07:00:41,515 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:00:41,516 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:00:53,229 - utils - INFO - Streamlit app started
+2026-03-19 07:00:53,467 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:00:53,468 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:00:56,467 - utils - INFO - Streamlit app started
+2026-03-19 07:00:56,493 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-03-19 07:00:56,495 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-03-19 07:00:59,109 - utils - INFO - Streamlit app started
+2026-03-19 07:00:59,130 - utils - ERROR - Error in Predictor page: validate_input() takes 2 positional arguments but 3 were given
+2026-03-19 07:00:59,133 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-03-19 07:01:07,855 - utils - INFO - Streamlit app started
+2026-03-19 07:01:07,890 - utils - INFO - Report Summary page displayed successfully
+2026-03-19 07:01:07,891 - utils - INFO - User navigated to: 📋 Report Summary
+2026-03-19 07:01:13,693 - utils - INFO - Streamlit app started
+2026-03-19 07:01:13,905 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:01:13,906 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:05:31,328 - utils - INFO - Streamlit app started
+2026-03-19 07:05:31,582 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:05:31,583 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:05:32,220 - utils - INFO - Streamlit app started
+2026-03-19 07:05:32,409 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:05:32,410 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:05:32,833 - utils - INFO - Streamlit app started
+2026-03-19 07:05:33,048 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:05:33,049 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:05:33,179 - utils - INFO - Streamlit app started
+2026-03-19 07:05:33,420 - utils - INFO - Streamlit app started
+2026-03-19 07:05:33,657 - utils - INFO - Streamlit app started
+2026-03-19 07:05:33,873 - utils - INFO - Streamlit app started
+2026-03-19 07:05:34,081 - utils - INFO - Streamlit app started
+2026-03-19 07:05:34,328 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:05:34,328 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:05:47,363 - utils - INFO - Streamlit app started
+2026-03-19 07:05:47,611 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:05:47,612 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:09:34,862 - utils - INFO - Streamlit app started
+2026-03-19 07:09:35,183 - utils - INFO - Loaded 5110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-03-19 07:09:35,189 - utils - INFO - Dropped 'id' column
+2026-03-19 07:09:35,193 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:09:35,196 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:09:35,196 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:09:36,485 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-03-19 07:09:36,490 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-03-19 07:09:36,492 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-03-19 07:09:37,065 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:09:37,066 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:09:46,016 - utils - INFO - Streamlit app started
+2026-03-19 07:09:46,209 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:09:46,210 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:09:55,907 - utils - INFO - Streamlit app started
+2026-03-19 07:09:55,985 - utils - INFO - Data Explorer: Filtered to 5109 records
+2026-03-19 07:09:55,987 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 07:10:28,291 - utils - INFO - Streamlit app started
+2026-03-19 07:10:28,513 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:10:28,514 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:19:29,775 - utils - INFO - Streamlit app started
+2026-03-19 07:19:30,018 - utils - INFO - Loaded 5110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-03-19 07:19:30,023 - utils - INFO - Dropped 'id' column
+2026-03-19 07:19:30,026 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:19:30,028 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:19:30,028 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:19:31,173 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-03-19 07:19:31,179 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-03-19 07:19:31,181 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-03-19 07:19:31,701 - utils - INFO - Executive Overview page displayed successfully
+2026-03-19 07:19:31,702 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-03-19 07:19:47,026 - utils - INFO - Streamlit app started
+2026-03-19 07:19:47,035 - utils - INFO - Dropped 'id' column
+2026-03-19 07:19:47,038 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:19:47,040 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:19:47,041 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:19:47,124 - utils - INFO - Data Explorer: Filtered to 5109 records
+2026-03-19 07:19:47,125 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 07:19:52,093 - utils - INFO - Streamlit app started
+2026-03-19 07:19:52,100 - utils - INFO - Dropped 'id' column
+2026-03-19 07:19:52,104 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:19:52,106 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:19:52,107 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:19:52,163 - utils - INFO - Data Explorer: Filtered to 2994 records
+2026-03-19 07:19:52,164 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 07:20:01,170 - utils - INFO - Streamlit app started
+2026-03-19 07:20:01,174 - utils - INFO - Dropped 'id' column
+2026-03-19 07:20:01,178 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:20:01,180 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:20:01,180 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:20:01,221 - utils - INFO - Data Explorer: Filtered to 2576 records
+2026-03-19 07:20:01,222 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 07:20:02,648 - utils - INFO - Streamlit app started
+2026-03-19 07:20:02,654 - utils - INFO - Dropped 'id' column
+2026-03-19 07:20:02,657 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:20:02,661 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:20:02,661 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:20:02,712 - utils - INFO - Data Explorer: Filtered to 2576 records
+2026-03-19 07:20:02,712 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 07:20:10,668 - utils - INFO - Streamlit app started
+2026-03-19 07:20:10,676 - utils - INFO - Dropped 'id' column
+2026-03-19 07:20:10,679 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:20:10,681 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:20:10,682 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:20:10,730 - utils - INFO - Data Explorer: Filtered to 2153 records
+2026-03-19 07:20:10,731 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 07:20:16,658 - utils - INFO - Streamlit app started
+2026-03-19 07:20:16,665 - utils - INFO - Dropped 'id' column
+2026-03-19 07:20:16,668 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:20:16,671 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:20:16,672 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:20:16,702 - utils - INFO - Data Explorer: Filtered to 65 records
+2026-03-19 07:20:16,703 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-03-19 07:20:33,062 - utils - INFO - Streamlit app started
+2026-03-19 07:20:33,068 - utils - INFO - Dropped 'id' column
+2026-03-19 07:20:33,072 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:20:33,075 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:20:33,075 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:20:33,663 - utils - INFO - EDA page displayed successfully
+2026-03-19 07:20:33,664 - utils - INFO - User navigated to: 📊 Exploratory Analysis
+2026-03-19 07:20:46,930 - utils - INFO - Streamlit app started
+2026-03-19 07:20:46,937 - utils - INFO - Dropped 'id' column
+2026-03-19 07:20:46,941 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:20:46,944 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:20:46,944 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:20:47,204 - utils - INFO - Model Performance page displayed successfully
+2026-03-19 07:20:47,205 - utils - INFO - User navigated to: 🤖 Model Performance
+2026-03-19 07:21:00,999 - utils - INFO - Streamlit app started
+2026-03-19 07:21:01,004 - utils - INFO - Dropped 'id' column
+2026-03-19 07:21:01,007 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:21:01,009 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:21:01,010 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:21:01,029 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-03-19 07:21:01,029 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-03-19 07:21:03,407 - utils - INFO - Streamlit app started
+2026-03-19 07:21:03,414 - utils - INFO - Dropped 'id' column
+2026-03-19 07:21:03,417 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:21:03,419 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:21:03,420 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:21:03,433 - utils - INFO - Input validation passed
+2026-03-19 07:21:03,453 - utils - INFO - Prediction made: 34.50% stroke probability
+2026-03-19 07:21:03,484 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-03-19 07:21:03,487 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-03-19 07:21:08,950 - utils - INFO - Streamlit app started
+2026-03-19 07:21:08,955 - utils - INFO - Dropped 'id' column
+2026-03-19 07:21:08,959 - utils - INFO - Removed 1 rows with gender='Other'
+2026-03-19 07:21:08,961 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-03-19 07:21:08,961 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-03-19 07:21:08,982 - utils - INFO - Report Summary page displayed successfully
+2026-03-19 07:21:08,983 - utils - INFO - User navigated to: 📋 Report Summary
