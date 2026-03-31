@@ -105,15 +105,53 @@ This project delivers a **production-grade analytics platform** that:
 
 ---
 
-## 📁 Project Structure
+## ✨ Version 2.1 Improvements & Best Practices
+
+### Code Quality Enhancements
+
+| Enhancement | Description | Status |
+|-------------|-------------|--------|
+| **Modular Architecture** | Refactored into separate modules (pages, utils, API) for maintainability | ✅ |
+| **Type Hints** | Added comprehensive type hints to all functions | ✅ |
+| **Logging System** | Structured logging with file & console handlers | ✅ |
+| **Error Handling** | Try-catch blocks with meaningful error messages | ✅ |
+| **Configuration Management** | YAML config file for environment-specific settings | ✅ |
+| **Input Validation** | Comprehensive validation for user inputs and data | ✅ |
+
+### Production-Ready Features
+
+| Feature | Description | Status |
+|---------|-------------|--------|
+| **REST API** | FastAPI endpoints for programmatic access | ✅ |
+| **Docker Support** | Dockerfile & docker-compose for containerized deployment | ✅ |
+| **Unit Tests** | Pytest test suite with 15+ test cases | ✅ |
+| **CI/CD Pipeline** | GitHub Actions for automated testing & code quality | ✅ |
+| **Environment Variables** | .env.example template for configuration | ✅ |
+| **Comprehensive Logging** | Application-wide logging to file and console | ✅ |
+
+---
 
 ```
 stroke-prediction/
 │
-├── 📄 app.py                  # Streamlit multi-page dashboard (1,095 lines)
-├── 📄 train_model.py          # ML training & evaluation pipeline
-├── 📄 requirements.txt        # Python dependencies
-├── 📄 README.md               # Project documentation (you are here)
+├── 📄 app.py                   # Streamlit multi-page dashboard (refactored)
+├── 📄 train_model.py           # ML training pipeline (enhanced with logging & type hints)
+├── 📄 api.py                   # FastAPI REST API for predictions
+├── 📄 utils.py                 # Shared utilities, logging, validation
+├── 📄 config.yaml              # Configuration management
+├── 📄 requirements.txt         # Python dependencies
+├── 📄 Dockerfile               # Docker containerization
+├── 📄 docker-compose.yml       # Docker Compose orchestration
+├── 📄 .env.example             # Environment variables template
+│
+├── 📂 pages/                   # Streamlit page modules
+│   ├── __init__.py
+│   ├── overview.py             # Executive Overview page
+│   ├── explorer.py             # Data Explorer page
+│   ├── eda.py                  # Exploratory Analysis page
+│   ├── model_performance.py    # Model Performance page
+│   ├── predictor.py            # Stroke Risk Predictor page
+│   └── report.py               # Report Summary page
 │
 ├── 📂 data/
 │   └── healthcare-dataset-stroke-data.csv   # Source dataset (~5,110 records)
@@ -123,8 +161,18 @@ stroke-prediction/
 │   ├── metrics.json                         # Evaluation metrics for all models
 │   └── feature_importance.json              # Feature importance scores
 │
-└── 📂 notebooks/
-    └── stroke_analysis.ipynb                # Jupyter EDA notebook
+├── 📂 logs/                    # Application logs
+│   ├── app.log                 # Streamlit app logs
+│   └── train_model.log         # Training pipeline logs
+│
+├── 📂 tests/                   # Unit tests
+│   ├── __init__.py
+│   └── test_utils.py           # Tests for utilities and validation
+│
+├── 📂 .github/workflows/       # CI/CD Pipelines
+│   └── tests.yml               # GitHub Actions workflow
+│
+└── 📄 README.md                # Project documentation (you are here)
 ```
 
 ---
@@ -139,7 +187,7 @@ stroke-prediction/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/stroke-prediction.git
+git clone https://github.com/ASTROBOX1/stroke-prediction.git
 cd stroke-prediction
 ```
 
@@ -178,7 +226,74 @@ streamlit run app.py
 
 The dashboard will open at **http://localhost:8501** 🎉
 
+### 6️⃣ (Optional) Launch the REST API
+
+```bash
+uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+```
+
+API documentation will be available at **http://localhost:8000/api/docs**
+
+### 7️⃣ (Optional) Run with Docker
+
+```bash
+# Build and run both dashboard and API
+docker-compose up --build
+```
+
+This will:
+- Start the Streamlit dashboard on port 8501
+- Start the FastAPI on port 8000
+- Set up shared network for inter-service communication
+
+### 8️⃣ (Optional) Run Unit Tests
+
+```bash
+pytest tests/ -v --cov
+```
+
 ---
+
+## 🌐 REST API Usage
+
+The FastAPI provides programmatic access to stroke predictions:
+
+### Health Check
+```bash
+curl http://localhost:8000/health
+```
+
+### Single Prediction
+```bash
+curl -X POST http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "gender": "Male",
+    "age": 50,
+    "hypertension": 0,
+    "heart_disease": 0,
+    "ever_married": "Yes",
+    "work_type": "Private",
+    "Residence_type": "Urban",
+    "avg_glucose_level": 100.0,
+    "bmi": 28.5,
+    "smoking_status": "never smoked"
+  }'
+```
+
+### Batch Predictions
+```bash
+curl -X POST http://localhost:8000/batch-predict \
+  -H "Content-Type: application/json" \
+  -d '[
+    {"gender": "Male", "age": 50, ...},
+    {"gender": "Female", "age": 45, ...}
+  ]'
+```
+
+### API Documentation
+- **Interactive Docs**: http://localhost:8000/api/docs (Swagger UI)
+- **Alternative Docs**: http://localhost:8000/api/redoc (ReDoc)
 
 ## 🤖 Machine Learning Pipeline
 
@@ -300,14 +415,29 @@ The best model is selected based on **AUC-ROC** — the most appropriate metric 
 
 ## 🗺 Future Roadmap
 
+### Version 2.1 ✅ (Complete)
+- [x] Modular architecture with separate page components
+- [x] Comprehensive logging system
+- [x] Type hints throughout codebase
+- [x] Configuration management (YAML)
+- [x] Input validation framework
+- [x] FastAPI REST API for predictions
+- [x] Docker & docker-compose support
+- [x] Unit tests with pytest
+- [x] GitHub Actions CI/CD pipeline
+- [x] Environment variable management
+
+### Future Enhancements (v2.2+)
 - [ ] Deep Learning models (Neural Networks, TabNet)
 - [ ] SHAP/LIME explainability for individual predictions
-- [ ] API endpoint (FastAPI) for integration with hospital systems
+- [ ] Model versioning system with timestamp tracking
 - [ ] Time-series analysis for recurring patient visits
 - [ ] Automated alerting system for high-risk patients
 - [ ] Multi-language dashboard support
-- [ ] Docker containerization for deployment
-- [ ] Integration with real hospital EHR systems
+- [ ] PostgreSQL database integration
+- [ ] Real-time data streaming capabilities
+- [ ] Integration with hospital EHR systems
+- [ ] Mobile app support
 
 ---
 

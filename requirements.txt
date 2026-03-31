@@ -11,3 +11,11 @@ plotly
 openpyxl
 scipy
 nbformat
+pyyaml
+pydantic
+python-dotenv
+fastapi
+uvicorn
+pytest
+pytest-cov
+httpx

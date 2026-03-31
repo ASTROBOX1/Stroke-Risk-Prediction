@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # Streamlit Dashboard
+  dashboard:
+    build: .
+    container_name: stroke-prediction-dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+      - /app/__pycache__
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - stroke-network
+    depends_on:
+      - api
+
+  # FastAPI REST API
+  api:
+    build: .
+    container_name: stroke-prediction-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/__pycache__
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    command: uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - stroke-network
+
+  # Optional: PostgreSQL for future database integration
+  # postgres:
+  #   image: postgres:14
+  #   container_name: stroke-db
+  #   environment:
+  #     POSTGRES_USER: strokeadmin
+  #     POSTGRES_PASSWORD: strokepassword
+  #     POSTGRES_DB: stroke_analytics
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - stroke-network
+
+networks:
+  stroke-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:

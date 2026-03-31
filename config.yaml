@@ -1,0 +1,45 @@
+project:
+  name: "Stroke Prediction Analytics Platform"
+  version: "2.1.0"
+  description: "ML platform for stroke risk assessment"
+  author: "Healthcare Analytics Division"
+
+paths:
+  data: "data/healthcare-dataset-stroke-data.csv"
+  models_dir: "models"
+  model_file: "best_stroke_model.joblib"
+  metrics_file: "metrics.json"
+  feature_importance_file: "feature_importance.json"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/app.log"
+
+streamlit:
+  page_title: "Stroke Prediction Analytics"
+  page_icon: "🧠"
+  layout: "wide"
+  initial_sidebar_state: "expanded"
+
+data:
+  test_size: 0.2
+  random_state: 42
+  bmi_imputation_strategy: "median"
+
+model:
+  training_random_state: 42
+  cross_validation_folds: 5
+
+validation:
+  age_min: 0
+  age_max: 120
+  bmi_min: 10.0
+  bmi_max: 100.0
+  glucose_min: 0.0
+  glucose_max: 300.0
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+  reload: true
