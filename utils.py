@@ -345,8 +345,20 @@ def validate_input(
 
 
 # ═══════════════════════════════════════════════════════════
-# COLOR & STYLING CONSTANTS
+# COLOR & STYLING CONSTANTS & UI COMPONENTS
 # ═══════════════════════════════════════════════════════════
+
+def kpi_card(icon: str, value: str, label: str, css_class: str = ""):
+    st.markdown(f"""
+    <div class="kpi-card {css_class}">
+        <div class="kpi-icon">{icon}</div>
+        <div class="kpi-value">{value}</div>
+        <div class="kpi-label">{label}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+def section_divider():
+    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
 
 COLORS = {
     'primary':     '#667EEA',
