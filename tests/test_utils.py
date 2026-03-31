@@ -7,6 +7,7 @@ import pytest
 import pandas as pd
 import numpy as np
 import os
+import logging
 from pathlib import Path
 import sys
 from fastapi.testclient import TestClient
@@ -14,7 +15,7 @@ from fastapi.testclient import TestClient
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import api
+from api import app
 from utils import (
     load_config,
     validate_input,
@@ -22,6 +23,9 @@ from utils import (
     COLORS,
     PLOTLY_TEMPLATE
 )
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 
 # ═══════════════════════════════════════════════════════════
@@ -96,7 +100,7 @@ class TestConfigLoading:
 
     def test_load_config_success(self, monkeypatch):
         """Test loading config file successfully from a nested working directory."""
-        monkeypatch.chdir(Path(__file__).resolve().parent)
+        monkeypatch.chdir(str(Path(__file__).resolve().parent))
         config = load_config('config.yaml')
         assert config is not None
         assert 'paths' in config
@@ -113,16 +117,12 @@ class TestInputValidation:
 
     def test_valid_input(self, sample_patient_input, sample_config):
         """Test validation with valid input."""
-        import logging
-        logger = logging.getLogger(__name__)
         is_valid, msg = validate_input(sample_patient_input, sample_config, logger)
         assert is_valid is True
         assert msg == ""
 
     def test_invalid_age_too_high(self, sample_patient_input, sample_config):
         """Test validation with age too high."""
-        import logging
-        logger = logging.getLogger(__name__)
         sample_patient_input['age'] = 150
         is_valid, msg = validate_input(sample_patient_input, sample_config, logger)
         assert is_valid is False
@@ -130,16 +130,12 @@ class TestInputValidation:
 
     def test_invalid_age_negative(self, sample_patient_input, sample_config):
         """Test validation with negative age."""
-        import logging
-        logger = logging.getLogger(__name__)
         sample_patient_input['age'] = -5
         is_valid, msg = validate_input(sample_patient_input, sample_config, logger)
         assert is_valid is False
 
     def test_invalid_bmi_too_low(self, sample_patient_input, sample_config):
         """Test validation with BMI too low."""
-        import logging
-        logger = logging.getLogger(__name__)
         sample_patient_input['bmi'] = 5.0
         is_valid, msg = validate_input(sample_patient_input, sample_config, logger)
         assert is_valid is False
@@ -147,8 +143,6 @@ class TestInputValidation:
 
     def test_invalid_glucose_too_high(self, sample_patient_input, sample_config):
         """Test validation with glucose too high."""
-        import logging
-        logger = logging.getLogger(__name__)
         sample_patient_input['avg_glucose_level'] = 400.0
         is_valid, msg = validate_input(sample_patient_input, sample_config, logger)
         assert is_valid is False
@@ -164,8 +158,6 @@ class TestDataPreprocessing:
 
     def test_preprocess_data_success(self, sample_dataframe):
         """Test successful data preprocessing."""
-        import logging
-        logger = logging.getLogger(__name__)
         df_processed = preprocess_data(sample_dataframe, logger)
         assert df_processed is not None
         assert len(df_processed) > 0
@@ -173,16 +165,12 @@ class TestDataPreprocessing:
 
     def test_preprocess_data_no_bmi_nans(self, sample_dataframe):
         """Test that NaN BMI values are imputed."""
-        import logging
-        logger = logging.getLogger(__name__)
         sample_dataframe.loc[0, 'bmi'] = np.nan
         df_processed = preprocess_data(sample_dataframe, logger)
         assert df_processed['bmi'].isna().sum() == 0
 
     def test_preprocess_data_removes_other_gender(self):
         """Test that 'Other' gender is removed."""
-        import logging
-        logger = logging.getLogger(__name__)
         df = pd.DataFrame({
             'gender': ['Male', 'Female', 'Other', 'Male'],
             'age': [30, 40, 50, 35],
@@ -238,9 +226,9 @@ class TestApiEndpoints:
 
     def test_health_endpoint_degraded_when_model_missing(self, monkeypatch):
         """Health endpoint should report degraded when no model is loaded."""
-        with TestClient(api.app) as client:
-            monkeypatch.setattr(api, 'model', None)
-            response = client.get('/health')
+        client = TestClient(app)
+        monkeypatch.setattr('api.model', None)
+        response = client.get('/health')
 
         assert response.status_code == 200
         payload = response.json()
@@ -249,9 +237,9 @@ class TestApiEndpoints:
 
     def test_predict_endpoint_returns_risk_assessment(self, sample_patient_input, monkeypatch):
         """Prediction endpoint should return a consistent response payload."""
-        with TestClient(api.app) as client:
-            monkeypatch.setattr(api, 'model', DummyModel(probability=0.72))
-            response = client.post('/predict', json=sample_patient_input)
+        client = TestClient(app)
+        monkeypatch.setattr('api.model', DummyModel(probability=0.72))
+        response = client.post('/predict', json=sample_patient_input)
 
         assert response.status_code == 200
         payload = response.json()
