@@ -122,3 +122,46 @@ def preprocess_data(df: pd.DataFrame,
     df = df.drop_duplicates()
 
     return df.reset_index(drop=True)
+
+# ═══════════════════════════════════════════════════════════
+# TESTS
+# ═══════════════════════════════════════════════════════════
+
+def test_resolve_path():
+    p = resolve_path("hello.txt")
+    assert p.name == "hello.txt"
+
+def test_validate_input():
+    config = {
+        "validation": {
+            "age_min": 0,
+            "age_max": 120,
+            "bmi_min": 10,
+            "bmi_max": 60,
+            "glucose_min": 50,
+            "glucose_max": 300
+        }
+    }
+    data = {
+        "age": 45,
+        "bmi": 25,
+        "avg_glucose_level": 100
+    }
+    logger = logging.getLogger("test")
+    valid, msg = validate_input(data, config, logger)
+    assert valid is True
+    assert msg == ""
+
+def test_preprocess_data():
+    df = pd.DataFrame({
+        "id": [1, 2, 3],
+        "gender": ["Male", "Other", "Female"],
+        "bmi": [22.0, np.nan, 28.0]
+    })
+    logger = logging.getLogger("test")
+    processed = preprocess_data(df, logger)
+    
+    assert "id" not in processed.columns
+    assert "Other" not in processed["gender"].values
+    assert processed["bmi"].isnull().sum() == 0
+    assert len(processed) == 2
