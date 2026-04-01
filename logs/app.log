@@ -276,3 +276,306 @@ def load_data(_logger, ...):
 2026-03-31 23:52:11,959 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
 2026-03-31 23:52:12,282 - utils - INFO - Executive Overview page displayed successfully
 2026-03-31 23:52:12,282 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:14:36,667 - utils - INFO - Streamlit app started
+2026-04-01 05:14:36,810 - utils - INFO - Loaded 5,110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-04-01 05:14:36,815 - utils - INFO - Dropped 'id' column
+2026-04-01 05:14:36,818 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:14:36,821 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:14:36,821 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:14:38,511 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-04-01 05:14:38,516 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-04-01 05:14:38,519 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-04-01 05:14:39,106 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:14:39,107 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:14:44,374 - utils - INFO - Streamlit app started
+2026-04-01 05:14:44,383 - utils - INFO - Dropped 'id' column
+2026-04-01 05:14:44,387 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:14:44,389 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:14:44,390 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:14:44,471 - utils - INFO - Data Explorer: Filtered to 5109 records
+2026-04-01 05:14:44,471 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:14:53,542 - utils - INFO - Streamlit app started
+2026-04-01 05:14:53,548 - utils - INFO - Dropped 'id' column
+2026-04-01 05:14:53,553 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:14:53,555 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:14:53,556 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:14:53,996 - utils - INFO - EDA page displayed successfully
+2026-04-01 05:14:53,997 - utils - INFO - User navigated to: 📊 Exploratory Analysis
+2026-04-01 05:14:59,442 - utils - INFO - Streamlit app started
+2026-04-01 05:14:59,449 - utils - INFO - Dropped 'id' column
+2026-04-01 05:14:59,453 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:14:59,456 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:14:59,457 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:14:59,672 - utils - INFO - Model Performance page displayed successfully
+2026-04-01 05:14:59,673 - utils - INFO - User navigated to: 🤖 Model Performance
+2026-04-01 05:15:05,738 - utils - INFO - Streamlit app started
+2026-04-01 05:15:05,745 - utils - INFO - Dropped 'id' column
+2026-04-01 05:15:05,749 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:15:05,751 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:15:05,752 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:15:05,775 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-01 05:15:05,777 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-01 05:15:08,792 - utils - INFO - Streamlit app started
+2026-04-01 05:15:08,798 - utils - INFO - Dropped 'id' column
+2026-04-01 05:15:08,806 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:15:08,809 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:15:08,809 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:15:08,823 - utils - INFO - Input validation passed
+2026-04-01 05:15:08,842 - utils - INFO - Prediction made: 34.50% stroke probability
+2026-04-01 05:15:08,876 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-01 05:15:08,878 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-01 05:15:09,442 - utils - INFO - Streamlit app started
+2026-04-01 05:15:09,446 - utils - INFO - Dropped 'id' column
+2026-04-01 05:15:09,450 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:15:09,451 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:15:09,452 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:15:09,463 - utils - INFO - Input validation passed
+2026-04-01 05:15:09,477 - utils - INFO - Prediction made: 34.50% stroke probability
+2026-04-01 05:15:09,489 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-01 05:15:09,490 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-01 05:15:11,178 - utils - INFO - Streamlit app started
+2026-04-01 05:15:11,185 - utils - INFO - Dropped 'id' column
+2026-04-01 05:15:11,189 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:15:11,191 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:15:11,191 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:15:11,215 - utils - INFO - Report Summary page displayed successfully
+2026-04-01 05:15:11,215 - utils - INFO - User navigated to: 📋 Report Summary
+2026-04-01 05:16:47,893 - utils - INFO - Streamlit app started
+2026-04-01 05:16:47,940 - utils - INFO - Dropped 'id' column
+2026-04-01 05:16:47,948 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:16:47,951 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:16:47,951 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:16:48,127 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:16:48,128 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:19:55,752 - utils - INFO - Streamlit app started
+2026-04-01 05:19:55,906 - utils - INFO - Loaded 5,110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-04-01 05:19:55,912 - utils - INFO - Dropped 'id' column
+2026-04-01 05:19:55,915 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:19:55,917 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:19:55,917 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:19:57,371 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-04-01 05:19:57,376 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-04-01 05:19:57,379 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-04-01 05:19:58,038 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:19:58,039 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:20:54,289 - utils - INFO - Streamlit app started
+2026-04-01 05:20:54,295 - utils - INFO - Dropped 'id' column
+2026-04-01 05:20:54,297 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:20:54,299 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:20:54,299 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:20:54,413 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:20:54,414 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:21:14,720 - utils - INFO - Streamlit app started
+2026-04-01 05:21:14,726 - utils - INFO - Dropped 'id' column
+2026-04-01 05:21:14,729 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:21:14,730 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:21:14,730 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:21:14,793 - utils - INFO - Data Explorer: Filtered to 5109 records
+2026-04-01 05:21:14,793 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:21:17,089 - utils - INFO - Streamlit app started
+2026-04-01 05:21:17,093 - utils - INFO - Dropped 'id' column
+2026-04-01 05:21:17,096 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:21:17,098 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:21:17,099 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:21:17,113 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-01 05:21:17,114 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-01 05:21:17,723 - utils - INFO - Streamlit app started
+2026-04-01 05:21:17,727 - utils - INFO - Dropped 'id' column
+2026-04-01 05:21:17,731 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:21:17,734 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:21:17,734 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:21:17,889 - utils - INFO - Model Performance page displayed successfully
+2026-04-01 05:21:17,889 - utils - INFO - User navigated to: 🤖 Model Performance
+2026-04-01 05:21:19,334 - utils - INFO - Streamlit app started
+2026-04-01 05:21:19,338 - utils - INFO - Dropped 'id' column
+2026-04-01 05:21:19,341 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:21:19,342 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:21:19,342 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:21:19,354 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-01 05:21:19,354 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-01 05:21:20,549 - utils - INFO - Streamlit app started
+2026-04-01 05:21:20,553 - utils - INFO - Dropped 'id' column
+2026-04-01 05:21:20,556 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:21:20,558 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:21:20,558 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:21:20,755 - utils - INFO - Model Performance page displayed successfully
+2026-04-01 05:21:20,756 - utils - INFO - User navigated to: 🤖 Model Performance
+2026-04-01 05:21:24,412 - utils - INFO - Streamlit app started
+2026-04-01 05:21:24,417 - utils - INFO - Dropped 'id' column
+2026-04-01 05:21:24,419 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:21:24,422 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:21:24,422 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:21:24,431 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-01 05:21:24,432 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-01 05:24:16,278 - utils - INFO - Streamlit app started
+2026-04-01 05:24:16,290 - utils - INFO - Dropped 'id' column
+2026-04-01 05:24:16,296 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:24:16,299 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:24:16,300 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:24:16,506 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:24:16,507 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:24:43,324 - utils - INFO - Streamlit app started
+2026-04-01 05:24:43,330 - utils - INFO - Dropped 'id' column
+2026-04-01 05:24:43,333 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:24:43,334 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:24:43,335 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:24:43,499 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:24:43,499 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:26:06,751 - utils - INFO - Streamlit app started
+2026-04-01 05:26:06,758 - utils - INFO - Dropped 'id' column
+2026-04-01 05:26:06,762 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:26:06,764 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:26:06,765 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:26:06,906 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:26:06,906 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:26:40,487 - utils - INFO - Streamlit app started
+2026-04-01 05:26:40,494 - utils - INFO - Dropped 'id' column
+2026-04-01 05:26:40,497 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:26:40,499 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:26:40,500 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:26:40,665 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:26:40,665 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:27:09,609 - utils - INFO - Streamlit app started
+2026-04-01 05:27:09,623 - utils - INFO - Dropped 'id' column
+2026-04-01 05:27:09,628 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:27:09,632 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:27:09,632 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:27:10,197 - utils - INFO - EDA page displayed successfully
+2026-04-01 05:27:10,197 - utils - INFO - User navigated to: 📊 Exploratory Analysis
+2026-04-01 05:27:38,419 - utils - INFO - Streamlit app started
+2026-04-01 05:27:38,450 - utils - INFO - Dropped 'id' column
+2026-04-01 05:27:38,500 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:27:38,515 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:27:38,516 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:27:38,685 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:27:38,686 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:27:41,656 - utils - INFO - Streamlit app started
+2026-04-01 05:27:41,667 - utils - INFO - Dropped 'id' column
+2026-04-01 05:27:41,692 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:27:41,762 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:27:41,775 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:27:41,960 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:27:41,961 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:27:44,148 - utils - INFO - Streamlit app started
+2026-04-01 05:27:44,155 - utils - INFO - Dropped 'id' column
+2026-04-01 05:27:44,158 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:27:44,163 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:27:44,163 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:27:44,351 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:27:44,351 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:29:03,782 - utils - INFO - Streamlit app started
+2026-04-01 05:29:03,921 - utils - INFO - Loaded 5,110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-04-01 05:29:03,926 - utils - INFO - Dropped 'id' column
+2026-04-01 05:29:03,929 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:29:03,931 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:29:03,932 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:29:04,938 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-04-01 05:29:04,943 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-04-01 05:29:04,946 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-04-01 05:29:05,369 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:29:05,370 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:29:14,425 - utils - INFO - Streamlit app started
+2026-04-01 05:29:14,436 - utils - INFO - Dropped 'id' column
+2026-04-01 05:29:14,439 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:29:14,441 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:29:14,441 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:29:14,467 - utils - INFO - Report Summary page displayed successfully
+2026-04-01 05:29:14,468 - utils - INFO - User navigated to: 📋 Report Summary
+2026-04-01 05:29:22,923 - utils - INFO - Streamlit app started
+2026-04-01 05:29:22,930 - utils - INFO - Dropped 'id' column
+2026-04-01 05:29:22,934 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:29:22,936 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:29:22,937 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:29:23,108 - utils - INFO - Executive Overview page displayed successfully
+2026-04-01 05:29:23,108 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-01 05:29:32,769 - utils - INFO - Streamlit app started
+2026-04-01 05:29:32,776 - utils - INFO - Dropped 'id' column
+2026-04-01 05:29:32,780 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:29:32,782 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:29:32,782 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:29:32,850 - utils - INFO - Data Explorer: Filtered to 5109 records
+2026-04-01 05:29:32,850 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:29:51,917 - utils - INFO - Streamlit app started
+2026-04-01 05:29:51,920 - utils - INFO - Dropped 'id' column
+2026-04-01 05:29:51,925 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:29:51,927 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:29:51,928 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:29:51,986 - utils - INFO - Data Explorer: Filtered to 5109 records
+2026-04-01 05:29:51,987 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:30:05,530 - utils - INFO - Streamlit app started
+2026-04-01 05:30:05,538 - utils - INFO - Dropped 'id' column
+2026-04-01 05:30:05,542 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:30:05,546 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:30:05,546 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:30:05,601 - utils - INFO - Data Explorer: Filtered to 2982 records
+2026-04-01 05:30:05,602 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:30:11,251 - utils - INFO - Streamlit app started
+2026-04-01 05:30:11,261 - utils - INFO - Dropped 'id' column
+2026-04-01 05:30:11,265 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:30:11,268 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:30:11,269 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:30:11,302 - utils - INFO - Data Explorer: Filtered to 23 records
+2026-04-01 05:30:11,304 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:30:42,011 - utils - INFO - Streamlit app started
+2026-04-01 05:30:42,016 - utils - INFO - Dropped 'id' column
+2026-04-01 05:30:42,021 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:30:42,023 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:30:42,023 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:30:42,059 - utils - INFO - Data Explorer: Filtered to 23 records
+2026-04-01 05:30:42,061 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:30:43,504 - utils - INFO - Streamlit app started
+2026-04-01 05:30:43,509 - utils - INFO - Dropped 'id' column
+2026-04-01 05:30:43,511 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:30:43,512 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:30:43,512 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:30:43,532 - utils - INFO - Data Explorer: Filtered to 22 records
+2026-04-01 05:30:43,532 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:30:44,254 - utils - INFO - Streamlit app started
+2026-04-01 05:30:44,260 - utils - INFO - Dropped 'id' column
+2026-04-01 05:30:44,263 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:30:44,265 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:30:44,265 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:30:44,285 - utils - INFO - Data Explorer: Filtered to 6 records
+2026-04-01 05:30:44,286 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:30:45,657 - utils - INFO - Streamlit app started
+2026-04-01 05:30:45,661 - utils - INFO - Dropped 'id' column
+2026-04-01 05:30:45,664 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:30:45,667 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:30:45,667 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:30:45,689 - utils - INFO - Data Explorer: Filtered to 2 records
+2026-04-01 05:30:45,690 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:31:06,749 - utils - INFO - Streamlit app started
+2026-04-01 05:31:06,756 - utils - INFO - Dropped 'id' column
+2026-04-01 05:31:06,758 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:31:06,761 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:31:06,762 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:31:06,789 - utils - INFO - Data Explorer: Filtered to 23 records
+2026-04-01 05:31:06,789 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:31:19,987 - utils - INFO - Streamlit app started
+2026-04-01 05:31:19,995 - utils - INFO - Dropped 'id' column
+2026-04-01 05:31:19,997 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:31:19,999 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:31:19,999 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:31:20,018 - utils - INFO - Data Explorer: Filtered to 2 records
+2026-04-01 05:31:20,019 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:31:24,311 - utils - INFO - Streamlit app started
+2026-04-01 05:31:24,318 - utils - INFO - Dropped 'id' column
+2026-04-01 05:31:24,322 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:31:24,324 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:31:24,325 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:31:24,348 - utils - INFO - Data Explorer: Filtered to 2 records
+2026-04-01 05:31:24,349 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:31:25,176 - utils - INFO - Streamlit app started
+2026-04-01 05:31:25,180 - utils - INFO - Dropped 'id' column
+2026-04-01 05:31:25,183 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:31:25,185 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:31:25,185 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:31:25,206 - utils - INFO - Data Explorer: Filtered to 3 records
+2026-04-01 05:31:25,206 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:31:32,355 - utils - INFO - Streamlit app started
+2026-04-01 05:31:32,360 - utils - INFO - Dropped 'id' column
+2026-04-01 05:31:32,364 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:31:32,367 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:31:32,367 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:31:32,391 - utils - INFO - Data Explorer: Filtered to 8 records
+2026-04-01 05:31:32,391 - utils - INFO - User navigated to: 🔍 Data Explorer

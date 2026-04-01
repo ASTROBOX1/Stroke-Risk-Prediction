@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+!README.md
+
+# Notebooks (for production builds)
+notebooks/
+*.ipynb
+
+# Logs (will be generated fresh in container)
+logs/*.log
+
+# Models (should be mounted or downloaded separately in production)
+# Comment out if you want models in the image:
+# models/*.joblib
+# models/*.json
+
+# Data (should be mounted as volume)
+# data/*.csv
+
+# CI/CD
+.github/
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db

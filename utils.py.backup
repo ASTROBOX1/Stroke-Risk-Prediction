@@ -421,239 +421,138 @@ MODEL_COLORS = ['#2E86AB', '#A23B72', '#F39C12']
 
 CSS_STYLES = """
 <style>
-/* ═══════════════════════════════════════════════════════════
-   MODERN UI DESIGN SYSTEM - Stroke Risk Prediction Platform
-   ═══════════════════════════════════════════════════════════ */
+    /* ── Typography ── */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+    }
 
-/* ===== ROOT VARIABLES ===== */
-:root {
-    --primary: #667eea;
-    --primary-dark: #5a67d8;
-    --secondary: #764ba2;
-    --accent: #f093fb;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --info: #3b82f6;
-    
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-card: #1e293b;
-    --bg-glass: rgba(30, 41, 59, 0.7);
-    
-    --text-primary: #f1f5f9;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
-    
-    --border: rgba(148, 163, 184, 0.1);
-    --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-}
+    /* ── Sidebar ── */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+    }
+    [data-testid="stSidebar"] .stMarkdown h1,
+    [data-testid="stSidebar"] .stMarkdown h2,
+    [data-testid="stSidebar"] .stMarkdown h3,
+    [data-testid="stSidebar"] .stMarkdown p,
+    [data-testid="stSidebar"] .stMarkdown li,
+    [data-testid="stSidebar"] .stMarkdown label,
+    [data-testid="stSidebar"] .stSelectbox label {
+        color: #E2E8F0 !important;
+    }
 
-/* ===== GLOBAL STYLES ===== */
-.stApp {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
+    /* ── KPI Cards ── */
+    .kpi-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 16px;
+        padding: 24px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .kpi-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    }
+    .kpi-card-blue {
+        background: linear-gradient(135deg, #2E86AB 0%, #1B5E7F 100%);
+        box-shadow: 0 10px 30px rgba(46, 134, 171, 0.3);
+    }
+    .kpi-card-green {
+        background: linear-gradient(135deg, #2ECC71 0%, #1A9A54 100%);
+        box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+    }
+    .kpi-card-red {
+        background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+        box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+    }
+    .kpi-card-orange {
+        background: linear-gradient(135deg, #F39C12 0%, #D68910 100%);
+        box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
+    }
+    .kpi-card-purple {
+        background: linear-gradient(135deg, #9B59B6 0%, #7D3C98 100%);
+        box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3);
+    }
+    .kpi-card-dark {
+        background: linear-gradient(135deg, #2C3E50 0%, #1A252F 100%);
+        box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
+    }
+    .kpi-value {
+        font-size: 2.2em;
+        font-weight: 800;
+        margin: 8px 0 4px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .kpi-label {
+        font-size: 0.9em;
+        font-weight: 500;
+        opacity: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .kpi-icon {
+        font-size: 1.8em;
+        margin-bottom: 4px;
+    }
 
-/* ===== TYPOGRAPHY ===== */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.02em !important;
-    color: var(--text-primary) !important;
-}
+    /* ── Dividers ── */
+    .section-divider {
+        border: none;
+        height: 3px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+        border-radius: 2px;
+        margin: 30px 0;
+    }
 
-h1 {
-    font-size: 2.5rem !important;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.5rem !important;
-}
+    /* ── Report Card ── */
+    .report-card {
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 20px 24px;
+        margin: 12px 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .report-card h4 {
+        color: #1E293B;
+        margin-top: 0;
+    }
 
-p, span, div, label {
-    color: var(--text-secondary) !important;
-    line-height: 1.6 !important;
-}
+    /* ── Risk Gauge ── */
+    .risk-high {
+        background: linear-gradient(135deg, #E74C3C, #C0392B);
+        padding: 30px;
+        border-radius: 16px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+    }
+    .risk-moderate {
+        background: linear-gradient(135deg, #F39C12, #D68910);
+        padding: 30px;
+        border-radius: 16px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(243, 156, 18, 0.4);
+    }
+    .risk-low {
+        background: linear-gradient(135deg, #2ECC71, #1A9A54);
+        padding: 30px;
+        border-radius: 16px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4);
+    }
 
-/* ===== SIDEBAR ===== */
-[data-testid="stSidebar"] {
-    background: var(--bg-secondary) !important;
-    border-right: 1px solid var(--border);
-    backdrop-filter: blur(10px);
-}
+    /* ── Hide default footer ── */
+    footer {visibility: hidden;}
 
-[data-testid="stSidebar"] .css-1d391kg, 
-[data-testid="stSidebar"] .st-emotion-cache-1d391kg {
-    background: transparent !important;
-}
-
-/* Sidebar navigation buttons */
-[data-testid="stSidebar"] .stRadio > div {
-    gap: 0.5rem;
-}
-
-[data-testid="stSidebar"] .stRadio label {
-    background: rgba(148, 163, 184, 0.05) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 12px !important;
-    padding: 12px 16px !important;
-    margin: 4px 0 !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    cursor: pointer !important;
-}
-
-[data-testid="stSidebar"] .stRadio label:hover {
-    background: rgba(102, 126, 234, 0.1) !important;
-    border-color: var(--primary) !important;
-    transform: translateX(4px) !important;
-}
-
-/* ===== KPI CARDS - ENHANCED ===== */
-.kpi-card {
-    background: var(--bg-glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.kpi-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.kpi-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: var(--shadow-lg);
-}
-
-.kpi-card:hover::before {
-    opacity: 1;
-}
-
-.kpi-icon {
-    font-size: 2.5rem;
-    margin-bottom: 12px;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
-}
-
-.kpi-value {
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin: 8px 0;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.kpi-label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-}
-
-/* KPI Card Variants */
-.kpi-card-blue { border-top: 3px solid #3b82f6; }
-.kpi-card-red { border-top: 3px solid #ef4444; }
-.kpi-card-green { border-top: 3px solid #10b981; }
-.kpi-card-purple { border-top: 3px solid #8b5cf6; }
-.kpi-card-orange { border-top: 3px solid #f59e0b; }
-.kpi-card-dark { border-top: 3px solid #64748b; }
-
-/* ===== BUTTONS ===== */
-.stButton button {
-    background: var(--gradient-primary) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 12px !important;
-    padding: 12px 32px !important;
-    font-weight: 600 !important;
-    font-size: 0.95rem !important;
-    letter-spacing: 0.02em !important;
-    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.stButton button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6) !important;
-}
-
-/* ===== METRICS ===== */
-[data-testid="stMetric"] {
-    background: var(--bg-glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-}
-
-[data-testid="stMetric"] label {
-    font-size: 0.875rem !important;
-    font-weight: 600 !important;
-    color: var(--text-muted) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-}
-
-[data-testid="stMetric"] [data-testid="stMetricValue"] {
-    font-size: 2rem !important;
-    font-weight: 800 !important;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* ===== SECTION DIVIDER ===== */
-.section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-    margin: 2rem 0;
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-    animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ===== HIDE STREAMLIT BRANDING ===== */
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
-
+    /* ── Main area ── */
+    .block-container {
+        padding-top: 2rem;
+    }
 </style>
 """

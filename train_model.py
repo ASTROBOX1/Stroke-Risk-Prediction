@@ -101,7 +101,7 @@ NUMERICAL_COLS = ['age', 'hypertension', 'heart_disease', 'avg_glucose_level', '
 
 def preprocess_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series, ColumnTransformer]:
     """
-    Clean data and build a ColumnTransformer preprocessing pipeline.
+    Clean data and build a ColumnTransformer preprocessing pipeline (optimized).
 
     Args:
         df: Raw DataFrame
@@ -121,23 +121,22 @@ def preprocess_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series, ColumnTr
         if missing_cols:
             raise ValueError(f"Missing columns: {missing_cols}")
 
-        df = df.copy()
-
-        # Remove rare 'Other' gender category
+        # Optimized filtering and copying - do both in one operation
         initial_rows = len(df)
-        df = df[df['gender'] != 'Other']
+        df = df[df['gender'] != 'Other'].copy()  # Single copy operation
         removed_rows = initial_rows - len(df)
         if removed_rows > 0:
             logger.info(f"Removed {removed_rows} rows with gender='Other'")
 
-        # Drop ID column
+        # Drop ID column if exists (inplace to save memory)
         if 'id' in df.columns:
-            df = df.drop('id', axis=1)
+            df.drop('id', axis=1, inplace=True)
             logger.info("Dropped 'id' column")
 
         X = df.drop('stroke', axis=1)
         y = df['stroke']
 
+        # Optimized transformers with sparse output for categorical
         numerical_transformer = Pipeline(steps=[
             ('imputer', SimpleImputer(strategy='median')),
             ('scaler', StandardScaler())
@@ -145,13 +144,16 @@ def preprocess_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series, ColumnTr
 
         categorical_transformer = Pipeline(steps=[
             ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
-            ('onehot', OneHotEncoder(handle_unknown='ignore'))
+            ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=True))  # Use sparse for efficiency
         ])
 
-        preprocessor = ColumnTransformer(transformers=[
-            ('num', numerical_transformer, NUMERICAL_COLS),
-            ('cat', categorical_transformer, CATEGORICAL_COLS)
-        ])
+        preprocessor = ColumnTransformer(
+            transformers=[
+                ('num', numerical_transformer, NUMERICAL_COLS),
+                ('cat', categorical_transformer, CATEGORICAL_COLS)
+            ],
+            sparse_threshold=0.3  # Use sparse matrices when beneficial
+        )
 
         logger.info(f"✅ Preprocessing complete. Shape: {X.shape}")
         return X, y, preprocessor

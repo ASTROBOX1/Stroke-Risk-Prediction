@@ -1,9 +1,10 @@
 """
 FastAPI REST API for Stroke Prediction Model
-Provides programmatic access to stroke risk predictions
+Provides programmatic access to stroke risk predictions with security and monitoring
 """
 
 import logging
+import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import List, Dict, Any, Optional
@@ -11,7 +12,7 @@ from datetime import datetime
 import pandas as pd
 import joblib
 from pydantic import BaseModel, Field, field_validator
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, status, Request
 from fastapi.middleware.cors import CORSMiddleware
 from utils import load_config, resolve_path
 
@@ -22,7 +23,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-API_VERSION = "1.0.0"
+API_VERSION = "1.0.1"
 DEFAULT_CONFIG = {
     'paths': {'models_dir': 'models', 'model_file': 'best_stroke_model.joblib'},
     'validation': {
@@ -209,9 +210,30 @@ def get_risk_assessment(probability: float) -> tuple[str, List[str]]:
 
 
 def run_model_inference(patient_data: Dict[str, Any]) -> tuple[int, float, float]:
-    """Run prediction and probability scoring for a single patient."""
+    """
+    Run prediction and probability scoring for a single patient.
+    
+    Args:
+        patient_data: Dictionary containing patient features
+        
+    Returns:
+        Tuple of (prediction, probability, confidence)
+        
+    Raises:
+        RuntimeError: If model is not loaded
+        ValueError: If input data is invalid
+    """
     if model is None:
         raise RuntimeError("Model not loaded")
+
+    # Secondary validation (defense in depth)
+    age = patient_data.get('age', 0)
+    if not (0 <= age <= 120):
+        raise ValueError(f"Invalid age: {age}")
+        
+    bmi = patient_data.get('bmi', 0)
+    if not (10 <= bmi <= 100):
+        raise ValueError(f"Invalid BMI: {bmi}")
 
     patient_df = pd.DataFrame([patient_data])
     probabilities = model.predict_proba(patient_df)[0]
@@ -219,6 +241,39 @@ def run_model_inference(patient_data: Dict[str, Any]) -> tuple[int, float, float
     probability = float(probabilities[1])
     confidence = float(max(probabilities))
     return prediction, probability, confidence
+
+
+def run_batch_inference(patients_data: List[Dict[str, Any]]) -> List[Tuple[int, float, float]]:
+    """
+    Optimized batch inference for multiple patients.
+    
+    Args:
+        patients_data: List of patient feature dictionaries
+        
+    Returns:
+        List of tuples containing (prediction, probability, confidence)
+        
+    Raises:
+        RuntimeError: If model is not loaded
+    """
+    if model is None:
+        raise RuntimeError("Model not loaded")
+    
+    # Create DataFrame from all patients (vectorized operation)
+    patients_df = pd.DataFrame(patients_data)
+    
+    # Batch prediction (much faster than individual predictions)
+    predictions = model.predict(patients_df)
+    probabilities = model.predict_proba(patients_df)
+    
+    results = []
+    for i, (pred, probs) in enumerate(zip(predictions, probabilities)):
+        prediction = int(pred)
+        probability = float(probs[1])
+        confidence = float(max(probs))
+        results.append((prediction, probability, confidence))
+    
+    return results
 
 
 # ═══════════════════════════════════════════════════════════
@@ -256,13 +311,18 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS configuration
+# CORS configuration - restrict to specific origins
+CORS_ORIGINS = os.getenv(
+    "CORS_ORIGINS", 
+    "http://localhost:8501,http://localhost:3000,http://127.0.0.1:8501"
+).split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=CORS_ORIGINS,  # Restricted origins for security
     allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST"],  # Only allow necessary methods
+    allow_headers=["Content-Type", "Accept"],  # Only allow necessary headers
 )
 
 
@@ -341,7 +401,7 @@ async def predict_stroke(patient: PatientData) -> Dict[str, Any]:
 @app.post("/batch-predict", response_model=BatchPredictionResponse, tags=["Predictions"])
 async def batch_predict(patients: List[PatientData]) -> Dict[str, Any]:
     """
-    Batch predict stroke risk for multiple patients.
+    Batch predict stroke risk for multiple patients (optimized vectorized inference).
 
     Args:
         patients: List of patient data
@@ -359,12 +419,16 @@ async def batch_predict(patients: List[PatientData]) -> Dict[str, Any]:
         )
 
     try:
+        # Convert all patients to dictionaries
+        patients_data = [patient.model_dump() for patient in patients]
+        
+        # Optimized batch inference (vectorized operation)
+        batch_results = run_batch_inference(patients_data)
+        
+        # Build response
         predictions = []
-        for idx, patient in enumerate(patients):
-            patient_dict = patient.model_dump()
-            prediction, probability, confidence = run_model_inference(patient_dict)
+        for idx, (prediction, probability, confidence) in enumerate(batch_results):
             risk_level, _ = get_risk_assessment(probability)
-
             predictions.append({
                 "patient_index": idx,
                 "prediction": int(prediction),
