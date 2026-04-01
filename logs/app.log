@@ -579,3 +579,19 @@ def load_data(_logger, ...):
 2026-04-01 05:31:32,367 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
 2026-04-01 05:31:32,391 - utils - INFO - Data Explorer: Filtered to 8 records
 2026-04-01 05:31:32,391 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-01 05:56:10,079 - utils - INFO - Streamlit app started
+2026-04-01 05:56:10,165 - utils - INFO - Dropped 'id' column
+2026-04-01 05:56:10,175 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:56:10,182 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:56:10,182 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:56:10,216 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-01 05:56:10,217 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-01 05:56:12,783 - utils - INFO - Streamlit app started
+2026-04-01 05:56:12,789 - utils - INFO - Dropped 'id' column
+2026-04-01 05:56:12,792 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:56:12,793 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-01 05:56:12,793 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-01 05:56:12,805 - utils - INFO - Input validation passed
+2026-04-01 05:56:12,848 - utils - INFO - Prediction made: 34.50% stroke probability
+2026-04-01 05:56:12,879 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-01 05:56:12,880 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor

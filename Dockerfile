@@ -1,5 +1,5 @@
 # Multi-stage build for smaller image size
-FROM python:3.9-slim as builder
+FROM python:3.14-rc-slim as builder
 
 # Set working directory
 WORKDIR /app
@@ -15,7 +15,7 @@ RUN pip install --upgrade pip && \
     pip install --user --no-cache-dir -r requirements.txt
 
 # Final stage
-FROM python:3.9-slim
+FROM python:3.14-rc-slim
 
 WORKDIR /app
 
