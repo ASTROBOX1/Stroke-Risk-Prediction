@@ -46,3 +46,51 @@
 2026-03-19 06:53:23,253 - __main__ - INFO - ======================================================================
 2026-03-19 06:53:23,253 - __main__ - INFO - ✅ Pipeline complete successfully!
 2026-03-19 06:53:23,253 - __main__ - INFO - ======================================================================
+2026-04-01 05:53:27,572 - __main__ - INFO - ======================================================================
+2026-04-01 05:53:27,572 - __main__ - INFO - Starting ML Training Pipeline
+2026-04-01 05:53:27,572 - __main__ - INFO - ======================================================================
+2026-04-01 05:53:27,572 - __main__ - INFO - Loading data from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv...
+2026-04-01 05:53:27,592 - __main__ - INFO - ✅ Loaded 5,110 rows × 12 columns
+2026-04-01 05:53:27,593 - __main__ - INFO - Preprocessing data...
+2026-04-01 05:53:27,595 - __main__ - INFO - Removed 1 rows with gender='Other'
+2026-04-01 05:53:27,597 - __main__ - INFO - Dropped 'id' column
+2026-04-01 05:53:27,598 - __main__ - INFO - ✅ Preprocessing complete. Shape: (5109, 10)
+2026-04-01 05:53:27,604 - __main__ - INFO - Train: 4,087 samples | Test: 1,022 samples
+2026-04-01 05:53:27,605 - __main__ - INFO - Stroke cases in train: 199 / 4087 (4.9%)
+2026-04-01 05:53:27,605 - __main__ - INFO - Building model pipelines...
+2026-04-01 05:53:27,605 - __main__ - INFO - ✅ Built 3 model pipelines
+2026-04-01 05:53:27,605 - __main__ - INFO - Training Random Forest...
+2026-04-01 05:53:29,368 - __main__ - INFO - ✅ Random Forest trained successfully
+2026-04-01 05:53:29,368 - __main__ - INFO - Training XGBoost...
+2026-04-01 05:53:30,275 - __main__ - INFO - ✅ XGBoost trained successfully
+2026-04-01 05:53:30,275 - __main__ - INFO - Training Logistic Regression...
+2026-04-01 05:53:30,342 - __main__ - INFO - ✅ Logistic Regression trained successfully
+2026-04-01 05:53:30,342 - __main__ - INFO - Evaluating models...
+2026-04-01 05:53:30,462 - __main__ - INFO -   ── Random Forest ──
+2026-04-01 05:53:30,462 - __main__ - INFO -      Accuracy : 0.8659
+2026-04-01 05:53:30,463 - __main__ - INFO -      Precision: 0.1405
+2026-04-01 05:53:30,463 - __main__ - INFO -      Recall   : 0.3400
+2026-04-01 05:53:30,463 - __main__ - INFO -      F1-Score : 0.1988
+2026-04-01 05:53:30,463 - __main__ - INFO -      AUC-ROC  : 0.7726
+2026-04-01 05:53:30,522 - __main__ - INFO -   ── XGBoost ──
+2026-04-01 05:53:30,522 - __main__ - INFO -      Accuracy : 0.9266
+2026-04-01 05:53:30,522 - __main__ - INFO -      Precision: 0.2093
+2026-04-01 05:53:30,522 - __main__ - INFO -      Recall   : 0.1800
+2026-04-01 05:53:30,522 - __main__ - INFO -      F1-Score : 0.1935
+2026-04-01 05:53:30,522 - __main__ - INFO -      AUC-ROC  : 0.7768
+2026-04-01 05:53:30,560 - __main__ - INFO -   ── Logistic Regression ──
+2026-04-01 05:53:30,561 - __main__ - INFO -      Accuracy : 0.7397
+2026-04-01 05:53:30,561 - __main__ - INFO -      Precision: 0.1351
+2026-04-01 05:53:30,561 - __main__ - INFO -      Recall   : 0.8000
+2026-04-01 05:53:30,561 - __main__ - INFO -      F1-Score : 0.2312
+2026-04-01 05:53:30,561 - __main__ - INFO -      AUC-ROC  : 0.8414
+2026-04-01 05:53:30,561 - __main__ - INFO - 🏆 Best model: Logistic Regression (AUC = 0.8414)
+2026-04-01 05:53:30,578 - __main__ - INFO - Extracting feature importance...
+2026-04-01 05:53:30,578 - __main__ - INFO - ✅ Extracted importances for 20 features
+2026-04-01 05:53:30,578 - __main__ - INFO - Creating model directory: /home/astro/dta scnc prj/models
+2026-04-01 05:53:30,583 - __main__ - INFO - ✅ Model saved → /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-04-01 05:53:30,593 - __main__ - INFO - ✅ Metrics saved → /home/astro/dta scnc prj/models/metrics.json
+2026-04-01 05:53:30,593 - __main__ - INFO - ✅ Feature importance saved → /home/astro/dta scnc prj/models/feature_importance.json
+2026-04-01 05:53:30,593 - __main__ - INFO - ======================================================================
+2026-04-01 05:53:30,593 - __main__ - INFO - ✅ Pipeline complete successfully!
+2026-04-01 05:53:30,593 - __main__ - INFO - ======================================================================
