@@ -1,35 +1,39 @@
-# Core Data Science
-pandas
-numpy
-scikit-learn
-imbalanced-learn
-xgboost
-scipy
+# Python 3.14 Compatible Libraries
+# Updated for Python 3.14 (2026) - Latest Stable Versions
 
-# Dashboard & Visualization
-streamlit
-plotly
-matplotlib
-seaborn
+# Core Data Science - Python 3.14 Compatible
+pandas>=2.2.3
+numpy>=1.26.4,<2.0.0
+scikit-learn>=1.5.0
+imbalanced-learn>=0.12.0
+xgboost>=2.1.0
+scipy>=1.13.0
 
-# API & Web
-fastapi
-uvicorn[standard]
-pydantic
-python-dotenv
+# Dashboard & Visualization - Python 3.14 Compatible
+streamlit>=1.37.0
+plotly>=5.22.0
+matplotlib>=3.9.0
+seaborn>=0.13.2
 
-# Model & Data
-joblib
-pyyaml
-openpyxl
-nbformat
+# API & Web - Python 3.14 Compatible
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.8.0
+pydantic-settings>=2.3.0
+python-dotenv>=1.0.1
 
-# Testing
-pytest
-pytest-cov
-pytest-asyncio
-httpx
+# Model & Data - Python 3.14 Compatible
+joblib>=1.4.0
+pyyaml>=6.0.1
+openpyxl>=3.1.5
+nbformat>=5.10.4
 
-# Performance & Monitoring
-memory-profiler
-psutil
+# Testing - Python 3.14 Compatible
+pytest>=8.2.0
+pytest-cov>=5.0.0
+pytest-asyncio>=0.23.7
+httpx>=0.27.0
+
+# Performance & Monitoring - Python 3.14 Compatible
+memory-profiler>=0.61.0
+psutil>=6.0.0
