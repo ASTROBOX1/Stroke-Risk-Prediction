@@ -19,6 +19,7 @@ from datetime import datetime
 from typing import Tuple, Dict, Any, Optional
 
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
+from sklearn.base import clone
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -151,8 +152,7 @@ def preprocess_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series, ColumnTr
             transformers=[
                 ('num', numerical_transformer, NUMERICAL_COLS),
                 ('cat', categorical_transformer, CATEGORICAL_COLS)
-            ],
-            sparse_threshold=0.3  # Use sparse matrices when beneficial
+            ]
         )
 
         logger.info(f"✅ Preprocessing complete. Shape: {X.shape}")
@@ -205,7 +205,6 @@ def build_models(preprocessor: ColumnTransformer) -> Dict[str, ImbPipeline]:
                     max_depth=6,
                     learning_rate=0.1,
                     random_state=42,
-                    use_label_encoder=False,
                     eval_metric='logloss'
                 ))
             ]),
@@ -515,7 +514,7 @@ def main() -> None:
         all_metrics, best_name, best_model = evaluate_models(trained, X_test, y_test)
 
         # Extract feature importance
-        preprocessor_clone = preprocessor
+        preprocessor_clone = clone(preprocessor)
         preprocessor_clone.fit(X_train)
         fi = extract_feature_importance(best_model, preprocessor_clone, X_train)
 
