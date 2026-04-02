@@ -653,7 +653,9 @@ p, span, div, label {
 /* ===== HIDE STREAMLIT BRANDING ===== */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
-header {visibility: hidden;}
+/* Keep header visible so sidebar toggle button works */
+header[data-testid="stHeader"] {background: transparent !important;}
+[data-testid="collapsedControl"] {display: block !important; visibility: visible !important;}
 
 </style>
 """
