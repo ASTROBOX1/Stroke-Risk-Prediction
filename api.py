@@ -851,6 +851,190 @@ async def get_ab_stats(request: Request) -> dict[str, Any]:
 
 
 # ═══════════════════════════════════════════════════════════
+# EXPLAINABILITY (SHAP)
+# ═══════════════════════════════════════════════════════════
+
+_explainer = None
+_X_background = None
+
+
+def _init_explainability() -> None:
+    """Initialize SHAP explainer for model explanations."""
+    global _explainer, _X_background
+    
+    if not os.getenv("SHAP_EXPLAINABILITY_ENABLED", "").lower() in ("1", "true", "yes"):
+        logger.info("SHAP explainability is disabled (SHAP_EXPLAINABILITY_ENABLED != true)")
+        return
+    
+    try:
+        from explainability import StrokeExplainer
+        
+        # Load background data for SHAP
+        data_path = resolve_path(CONFIG.get("paths", {}).get("data", "data/healthcare-dataset-stroke-data.csv"))
+        if not data_path.exists():
+            logger.warning(f"Reference data not found at {data_path} — SHAP explainability disabled")
+            return
+        
+        df = pd.read_csv(data_path, low_memory=False)
+        
+        # Preprocess to match training
+        if "id" in df.columns:
+            df = df.drop("id", axis=1)
+        df = df[df["gender"] != "Other"]
+        if "stroke" in df.columns:
+            df = df.drop("stroke", axis=1)
+        
+        # Sample for background
+        _X_background = df.sample(min(100, len(df)), random_state=42)
+        
+        # Initialize explainer
+        model_path = _get_model_path()
+        if model_path.exists():
+            _explainer = StrokeExplainer(str(model_path), _X_background)
+            logger.info(f"SHAP explainer initialized with {len(_X_background)} background samples")
+        else:
+            logger.warning(f"Model not found at {model_path} — SHAP explainability disabled")
+    
+    except ImportError as e:
+        logger.warning(f"SHAP not installed — explainability disabled: {e}")
+    except Exception as e:
+        logger.warning(f"Failed to initialize SHAP explainability: {e}")
+
+
+class ExplanationResponse(BaseModel):
+    """Structured response for model explanation."""
+    
+    request_id: str
+    patient_id: str | None
+    prediction: int
+    probability: float
+    risk_level: str
+    explanation: dict[str, Any] | None
+
+
+@app.get("/explain", tags=["Explainability"])
+async def explain_prediction(
+    request: Request,
+    patient: PatientData
+) -> dict[str, Any]:
+    """
+    Get SHAP-based explanation for a stroke risk prediction.
+    
+    Returns:
+        - Prediction and probability
+        - Top contributing features
+        - Risk and protective factors
+        - Natural language explanation
+    """
+    request_id = getattr(request.state, "request_id", str(uuid.uuid4()))
+    
+    if not _model_metadata.get("loaded"):
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Model not loaded.",
+        )
+    
+    try:
+        # Get prediction
+        patient_dict = patient.model_dump()
+        df = pd.DataFrame([patient_dict])
+        
+        prediction = int(_model.predict(df)[0])
+        probability = float(_model.predict_proba(df)[0, 1])
+        risk_level, _ = get_risk_assessment(probability)
+        
+        # Get explanation
+        explanation = None
+        if _explainer is not None and _X_background is not None:
+            try:
+                from explainability import explain_prediction_api
+                explanation = explain_prediction_api(
+                    model=_model,
+                    patient_data=patient_dict,
+                    X_background=_X_background,
+                    patient_id=patient.patient_id
+                )
+            except Exception as e:
+                logger.warning(f"SHAP explanation failed: {e}")
+                explanation = {"error": "Explanation unavailable", "fallback": True}
+        
+        logger.info(
+            f"[{request_id}] explanation generated for patient={patient.patient_id} "
+            f"prediction={prediction} prob={probability:.4f}"
+        )
+        
+        return {
+            "request_id": request_id,
+            "patient_id": patient.patient_id,
+            "prediction": prediction,
+            "probability": probability,
+            "risk_level": risk_level,
+            "explanation": explanation,
+        }
+    
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.exception(f"[{request_id}] Explanation error: {exc}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error generating explanation.",
+        )
+
+
+@app.get("/explain/feature-importance", tags=["Explainability"])
+async def get_global_feature_importance(request: Request) -> dict[str, Any]:
+    """
+    Get global feature importance from the model.
+    
+    Returns:
+        Ranked list of features by importance
+    """
+    request_id = getattr(request.state, "request_id", "unknown")
+    
+    if not _model_metadata.get("loaded"):
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Model not loaded.",
+        )
+    
+    try:
+        classifier = _model.named_steps.get('classifier')
+        
+        if hasattr(classifier, 'feature_importances_'):
+            importances = classifier.feature_importances_
+        elif hasattr(classifier, 'coef_'):
+            importances = np.abs(classifier.coef_[0])
+        else:
+            return {
+                "request_id": request_id,
+                "feature_importance": {},
+                "note": "Model does not expose feature importance",
+            }
+        
+        # Get feature names
+        from ml_pipeline import NUMERICAL_COLS, CATEGORICAL_COLS
+        feature_names = NUMERICAL_COLS + CATEGORICAL_COLS
+        
+        importance_dict = dict(zip(feature_names, [float(v) for v in importances[:len(feature_names)]]))
+        sorted_importance = dict(sorted(importance_dict.items(), key=lambda x: x[1], reverse=True))
+        
+        return {
+            "request_id": request_id,
+            "model": _model_metadata.get("classifier", "unknown"),
+            "feature_importance": sorted_importance,
+            "top_5_features": list(sorted_importance.items())[:5],
+        }
+    
+    except Exception as exc:
+        logger.exception(f"[{request_id}] Feature importance error: {exc}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error getting feature importance.",
+        )
+
+
+# ═══════════════════════════════════════════════════════════
 # ENTRY POINT
 # ═══════════════════════════════════════════════════════════
 
@@ -859,6 +1043,10 @@ if __name__ == "__main__":
     import uvicorn
 
     api_cfg = CONFIG.get("api", DEFAULT_CONFIG["api"])
+    
+    # Initialize explainability if enabled
+    _init_explainability()
+    
     uvicorn.run(
         "api:app",
         host=api_cfg.get("host", "127.0.0.1"),

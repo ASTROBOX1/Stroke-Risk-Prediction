@@ -1,5 +1,10 @@
 # Python 3.14 Compatible Libraries
 # Updated for Python 3.14 (2026) - Latest Stable Versions
+# 
+# ADVANCED ML PIPELINE DEPENDENCIES:
+# - SHAP for model explainability
+# - Optuna for hyperparameter optimization
+# - Enhanced imbalanced learning
 
 # Core Data Science - Python 3.14 Compatible
 pandas>=2.2.3
@@ -8,6 +13,12 @@ scikit-learn>=1.5.0
 imbalanced-learn>=0.12.0
 xgboost>=2.1.0
 scipy>=1.13.0
+
+# Model Explainability (NEW)
+shap>=0.45.0
+
+# Hyperparameter Optimization (NEW)
+optuna>=4.0.0
 
 # Dashboard & Visualization - Python 3.14 Compatible
 streamlit>=1.37.0

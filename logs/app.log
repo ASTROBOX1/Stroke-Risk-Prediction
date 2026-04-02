@@ -721,3 +721,30 @@ def load_data(_logger, ...):
 2026-04-02 03:41:18,126 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
 2026-04-02 03:41:18,209 - utils - INFO - Data Explorer: Filtered to 5109 records
 2026-04-02 03:41:18,209 - utils - INFO - User navigated to: 🔍 Data Explorer
+2026-04-03 00:34:07,826 - utils - INFO - Streamlit app started
+2026-04-03 00:34:08,013 - utils - INFO - Loaded 5,110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-04-03 00:34:08,019 - utils - INFO - Dropped 'id' column
+2026-04-03 00:34:08,022 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-03 00:34:08,025 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-03 00:34:08,027 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-03 00:34:10,304 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-04-03 00:34:10,311 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-04-03 00:34:10,314 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-04-03 00:34:11,149 - utils - INFO - Executive Overview page displayed successfully
+2026-04-03 00:34:11,150 - utils - INFO - User navigated to: 🏠 Executive Overview
+2026-04-03 00:34:16,023 - utils - INFO - Streamlit app started
+2026-04-03 00:34:16,032 - utils - INFO - Dropped 'id' column
+2026-04-03 00:34:16,037 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-03 00:34:16,040 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-03 00:34:16,040 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-03 00:34:16,062 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-03 00:34:16,062 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-03 00:34:18,149 - utils - INFO - Streamlit app started
+2026-04-03 00:34:18,155 - utils - INFO - Dropped 'id' column
+2026-04-03 00:34:18,160 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-03 00:34:18,161 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-03 00:34:18,162 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-03 00:34:18,176 - utils - INFO - Input validation passed
+2026-04-03 00:34:18,193 - utils - INFO - Prediction made: 34.50% stroke probability
+2026-04-03 00:34:18,229 - utils - INFO - Stroke Risk Predictor page displayed successfully
+2026-04-03 00:34:18,231 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
