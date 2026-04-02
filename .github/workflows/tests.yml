@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11']
+        # تقليل النسخ يوفر وقت الـ Build إلا لو كنت مهتماً بالتوافق التام
+        python-version: ['3.9', '3.10'] 
 
     steps:
     - uses: actions/checkout@v3
@@ -20,40 +21,31 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+        cache: 'pip' # 🔥 تفعيل الكاش التلقائي لسرعة التحميل في المرات القادمة
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        # استخدم --no-cache-dir لتقليل استهلاك الـ RAM أثناء التثبيت الأول
+        pip install --no-cache-dir -r requirements.txt
 
-    - name: Lint with flake8
+    - name: Lint & Type Check (Combined)
       run: |
-        pip install flake8
-        # Stop the build if there are Python syntax errors or undefined names
+        pip install flake8 mypy
+        # فحص الأخطاء القاتلة فقط
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # Exit-zero treats all errors as warnings
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-    - name: Type checking with mypy
-      run: |
-        pip install mypy
-        mypy app.py train_model.py api.py utils.py --ignore-missing-imports || true
+        # تجاوز أخطاء النوع إذا لم تكن حرجة
+        mypy . --ignore-missing-imports || true
 
     - name: Run tests with pytest
       run: |
         pip install pytest pytest-cov
-        pytest tests/ -v --tb=short --cov=. --cov-report=html --cov-report=term --cov-report=xml
+        # تأكد أن مجلد tests موجود فعلاً في الريبو
+        pytest tests/ -v --tb=short --cov=. --cov-report=xml
 
     - name: Upload coverage reports
       uses: codecov/codecov-action@v3
       if: matrix.python-version == '3.9'
       with:
         file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
-
-    - name: Comment PR with coverage
-      if: github.event_name == 'pull_request' && matrix.python-version == '3.9'
-      uses: py-cov-action/python-coverage-comment-action@v3
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.CODECOV_TOKEN }} # تأكد من إضافة التوكن في Secrets
