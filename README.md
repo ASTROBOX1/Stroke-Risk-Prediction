@@ -55,14 +55,16 @@ This project delivers a **production-grade analytics platform** that:
 
 ## ✨ Key Features
 
-| Feature | Description |
-|---------|-------------|
-| 🏠 **Executive Overview** | KPI cards, demographic distributions, and cross-variable analysis at a glance |
-| 🔍 **Data Explorer** | Interactive filters by age, gender, stroke status, and work type with CSV export |
-| 📊 **Exploratory Analysis** | In-depth EDA with histograms, box plots, categorical breakdowns, and correlation heatmaps |
-| 🤖 **Model Performance** | ROC/PR curves, confusion matrices, feature importance, and model comparison charts |
-| ⚕️ **Risk Predictor** | Real-time stroke risk assessment with visual gauge and clinical recommendations |
-| 📋 **Report Summary** | Automated executive report with findings, model results, and business recommendations |
+
+
+## 📌 Featured Projects
+
+| Project | Key Focus | Status |
+| :--- | :--- | :--- |
+| 🧠 [**Stroke Risk Prediction**](https://github.com/ASTROBOX1/Stroke-Risk-Prediction) | Classification model to predict stroke risk with data preprocessing. | `Completed` |
+| 🔍 [**Mini RAG System**](https://github.com/ASTROBOX1/mini-rag) | AI-powered document retrieval and generation using LangChain. | `Production` |
+| 💎 [**Diamond Price Prediction**](https://github.com/ASTROBOX1/Diamond-Price-Prediction-ML) | Regression model with extensive Feature Engineering. | `Completed` |
+
 
 ---
 
