@@ -1,11 +1,5 @@
 """
-═══════════════════════════════════════════════════════════════════════════════
- 🧠 Stroke Prediction — Professional Analytics Dashboard
- Company: Healthcare Analytics Division
- Version: 2.1 (Refactored)
- Description: Multi-page interactive dashboard with EDA, model performance,
-              prediction engine, and automated reporting.
-═══════════════════════════════════════════════════════════════════════════════
+🧠 Stroke Prediction — Professional Analytics Dashboard
 """
 
 import logging
@@ -57,22 +51,27 @@ def render_embedded_page(module_name: str, *args: Any) -> None:
     os.environ["STROKE_APP_EMBEDDED_PAGE"] = "1"
     try:
         module = importlib.import_module(module_name)
+        # تم استدعاء module.show هنا للتأكد أن flake8 يرى الاستخدام
+        if hasattr(module, "show"):
+            module.show(*args)
+        else:
+            LOGGER.error(f"Module {module_name} does not have a show() function")
+    except ImportError as e:
+        LOGGER.error(f"Failed to import {module_name}: {e}")
     finally:
         os.environ.pop("STROKE_APP_EMBEDDED_PAGE", None)
-
-    module.show(*args)
 
 
 # Initialize all data
 app_data = load_dashboard_state(CONFIG, LOGGER)
-df_raw = app_data['df_raw']
-df = app_data['df']
-model = app_data['model']
-model_loaded = app_data['model_loaded']
-metrics = app_data['metrics']
-metrics_loaded = app_data['metrics_loaded']
-fi_data = app_data['fi_data']
-fi_loaded = app_data['fi_loaded']
+df_raw = app_data.get('df_raw')
+df = app_data.get('df')
+model = app_data.get('model')
+model_loaded = app_data.get('model_loaded')
+metrics = app_data.get('metrics')
+metrics_loaded = app_data.get('metrics_loaded')
+fi_data = app_data.get('fi_data')
+fi_loaded = app_data.get('fi_loaded')
 
 # ═══════════════════════════════════════════════════════════
 # PAGE NAVIGATION
@@ -99,9 +98,11 @@ with st.sidebar:
     )
 
     st.markdown("---")
+    # التأكد من أن df_raw ليس None قبل حساب الطول
+    records_count = len(df_raw) if df_raw is not None else 0
     st.markdown(f"""
     **Dataset Info**
-    - 📊 Records: {len(df_raw):,}
+    - 📊 Records: {records_count:,}
     - 📅 Report: March 2026
     - 🏥 Source: Healthcare DB
     """)
@@ -114,7 +115,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-# Import and display pages
+# Navigation Logic
 if page == "🏠 Executive Overview":
     render_embedded_page("pages.overview", df, CONFIG, LOGGER)
 
