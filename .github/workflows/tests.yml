@@ -9,58 +9,55 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    # إضافة مهلة زمنية (30 دقيقة) لمنع التعلق المفاجئ
+    # زيادة المهلة الزمنية لضمان عدم توقف التحميلات الضخمة
     timeout-minutes: 30 
-    
+
     strategy:
       matrix:
-        # استخدام النسخ المستقرة والأكثر شيوعاً
         python-version: ['3.9', '3.10'] 
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v4 # تحديث للنسخة الرابعة
+      uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5 # تحديث للنسخة الخامسة
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-        cache: 'pip' # الكاش يقلل وقت التحميل في المرات القادمة
+        cache: 'pip' # تفعيل الكاش لتسريع العمليات اللاحقة
 
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        # تثبيت أدوات الفحص والاختبار مسبقاً لضمان توفرها
+        # تثبيت أدوات الاختبار والفحص أولاً
         pip install flake8 mypy pytest pytest-cov
-        # التثبيت باستخدام --no-cache-dir لتقليل استهلاك الـ RAM داخل الـ Runner
-        if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+        # تثبيت المكتبات مع تقليل استهلاك الذاكرة
+        if [ -f requirements.txt ]; then 
+          pip install --no-cache-dir -r requirements.txt
+        fi
 
-    - name: Lint with flake8
+    - name: Lint & Type Check (Fixed)
       run: |
-        # فحص الأخطاء البرمجية القاتلة (E9, F63, F7, F82)
+        # فحص الأخطاء البرمجية القاتلة فقط
+        # ملاحظة: إذا لم تصلح الكود، سيتوقف الـ build هنا عند خطأ F821
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # تنبيهات التنسيق (اختياري، لن يوقف العملية)
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-    - name: Type Check with mypy
-      run: |
-        # تجاوز أخطاء المكتبات الخارجية المفقودة لضمان استمرار الـ Build
+        
+        # تشغيل mypy وتجاهل أخطاء المكتبات الخارجية لضمان الاستمرارية
         mypy . --ignore-missing-imports || true
 
     - name: Run tests with pytest
       run: |
-        # التأكد من وجود مجلد tests قبل التشغيل لتجنب خطأ "Not Found"
+        # التأكد من وجود مجلد الاختبارات قبل البدء
         if [ -d "tests" ]; then
           pytest tests/ -v --tb=short --cov=. --cov-report=xml
         else
-          echo "No tests directory found, skipping pytest."
+          echo "No tests directory found. Skipping tests."
         fi
 
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v4 # تحديث للنسخة الرابعة
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v4
       if: matrix.python-version == '3.9'
       with:
         file: ./coverage.xml
-        # تأكد من إضافة CODECOV_TOKEN في Settings > Secrets > Actions
-        token: ${{ secrets.CODECOV_TOKEN }} 
-        fail_ci_if_error: false # لكي لا يفشل الـ Build كاملاً إذا فشل الرفع لـ Codecov
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: false
