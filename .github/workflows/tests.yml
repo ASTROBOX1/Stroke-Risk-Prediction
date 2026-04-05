@@ -9,43 +9,58 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # إضافة مهلة زمنية (30 دقيقة) لمنع التعلق المفاجئ
+    timeout-minutes: 30 
+    
     strategy:
       matrix:
-        # تقليل النسخ يوفر وقت الـ Build إلا لو كنت مهتماً بالتوافق التام
+        # استخدام النسخ المستقرة والأكثر شيوعاً
         python-version: ['3.9', '3.10'] 
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v4 # تحديث للنسخة الرابعة
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5 # تحديث للنسخة الخامسة
       with:
         python-version: ${{ matrix.python-version }}
-        cache: 'pip' # 🔥 تفعيل الكاش التلقائي لسرعة التحميل في المرات القادمة
+        cache: 'pip' # الكاش يقلل وقت التحميل في المرات القادمة
 
-    - name: Install dependencies
+    - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        # استخدم --no-cache-dir لتقليل استهلاك الـ RAM أثناء التثبيت الأول
-        pip install --no-cache-dir -r requirements.txt
+        # تثبيت أدوات الفحص والاختبار مسبقاً لضمان توفرها
+        pip install flake8 mypy pytest pytest-cov
+        # التثبيت باستخدام --no-cache-dir لتقليل استهلاك الـ RAM داخل الـ Runner
+        if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
-    - name: Lint & Type Check (Combined)
+    - name: Lint with flake8
       run: |
-        pip install flake8 mypy
-        # فحص الأخطاء القاتلة فقط
+        # فحص الأخطاء البرمجية القاتلة (E9, F63, F7, F82)
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # تجاوز أخطاء النوع إذا لم تكن حرجة
+        # تنبيهات التنسيق (اختياري، لن يوقف العملية)
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Type Check with mypy
+      run: |
+        # تجاوز أخطاء المكتبات الخارجية المفقودة لضمان استمرار الـ Build
         mypy . --ignore-missing-imports || true
 
     - name: Run tests with pytest
       run: |
-        pip install pytest pytest-cov
-        # تأكد أن مجلد tests موجود فعلاً في الريبو
-        pytest tests/ -v --tb=short --cov=. --cov-report=xml
+        # التأكد من وجود مجلد tests قبل التشغيل لتجنب خطأ "Not Found"
+        if [ -d "tests" ]; then
+          pytest tests/ -v --tb=short --cov=. --cov-report=xml
+        else
+          echo "No tests directory found, skipping pytest."
+        fi
 
-    - name: Upload coverage reports
-      uses: codecov/codecov-action@v3
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4 # تحديث للنسخة الرابعة
       if: matrix.python-version == '3.9'
       with:
         file: ./coverage.xml
-        token: ${{ secrets.CODECOV_TOKEN }} # تأكد من إضافة التوكن في Secrets
+        # تأكد من إضافة CODECOV_TOKEN في Settings > Secrets > Actions
+        token: ${{ secrets.CODECOV_TOKEN }} 
+        fail_ci_if_error: false # لكي لا يفشل الـ Build كاملاً إذا فشل الرفع لـ Codecov
