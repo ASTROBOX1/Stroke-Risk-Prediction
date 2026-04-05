@@ -748,3 +748,14 @@ def load_data(_logger, ...):
 2026-04-03 00:34:18,193 - utils - INFO - Prediction made: 34.50% stroke probability
 2026-04-03 00:34:18,229 - utils - INFO - Stroke Risk Predictor page displayed successfully
 2026-04-03 00:34:18,231 - utils - INFO - User navigated to: ⚕️ Stroke Risk Predictor
+2026-04-05 06:33:20,933 - utils - INFO - Streamlit app started
+2026-04-05 06:33:21,130 - utils - INFO - Loaded 5,110 rows × 12 columns from /home/astro/dta scnc prj/data/healthcare-dataset-stroke-data.csv
+2026-04-05 06:33:21,141 - utils - INFO - Dropped 'id' column
+2026-04-05 06:33:21,146 - utils - INFO - Removed 1 rows with gender='Other'
+2026-04-05 06:33:21,150 - utils - INFO - Imputed 201 BMI values with median: 28.10
+2026-04-05 06:33:21,151 - utils - INFO - Preprocessing complete. Final shape: (5109, 11)
+2026-04-05 06:33:23,846 - utils - INFO - Loaded model from /home/astro/dta scnc prj/models/best_stroke_model.joblib
+2026-04-05 06:33:23,856 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/metrics.json
+2026-04-05 06:33:23,860 - utils - INFO - Loaded JSON from /home/astro/dta scnc prj/models/feature_importance.json
+2026-04-05 06:33:24,687 - utils - INFO - Executive Overview page displayed successfully
+2026-04-05 06:33:24,688 - utils - INFO - User navigated to: 🏠 Executive Overview
