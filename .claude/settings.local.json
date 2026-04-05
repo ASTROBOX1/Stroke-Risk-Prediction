@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import api; import metrics; import ab_testing; import monitoring; print\\('All imports OK'\\)\")",
+      "Bash(python -c ':*)"
+    ]
+  }
+}
